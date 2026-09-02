@@ -187,7 +187,9 @@ export default function App() {
       ? 'http://localhost:5173'
       : currentOrigin.replace('http://', 'https://'); // Cognito hosted UI requires https for non-localhost
 
-    return `https://${rumConfigInfo.cognitoDomain}/login?client_id=${rumConfigInfo.cognitoClientId}&response_type=token&scope=email+openid+profile&redirect_uri=${encodeURIComponent(
+    const domain = rumConfigInfo.cognitoDomain.replace(/^https?:\/\//, '').replace(/\/+$/, '');
+
+    return `https://${domain}/login?client_id=${rumConfigInfo.cognitoClientId}&response_type=token&scope=email+openid+profile&redirect_uri=${encodeURIComponent(
       redirectUri
     )}`;
   };

@@ -50,7 +50,7 @@ output "cognito_user_pool_client_id" {
 
 output "cognito_hosted_ui_domain" {
   description = "Cognito Hosted UI Domain prefix"
-  value       = "https://${aws_cognito_user_pool_domain.hosted_ui_domain.domain}.auth.${var.aws_region}.amazoncognito.com"
+  value       = "${aws_cognito_user_pool_domain.hosted_ui_domain.domain}.auth.${var.aws_region}.amazoncognito.com"
 }
 
 output "cognito_login_url" {

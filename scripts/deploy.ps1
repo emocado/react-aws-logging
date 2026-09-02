@@ -11,13 +11,14 @@ try {
     terraform init
     terraform apply -auto-approve
     
-    $REGION = (terraform output -raw aws_region)
-    $BUCKET_NAME = (terraform output -raw s3_bucket_name)
-    $WEBSITE_URL = (terraform output -raw s3_website_url)
-    $RUM_APP_ID = (terraform output -raw rum_app_monitor_id)
-    $LAMBDA_URL = (terraform output -raw lambda_proxy_function_url)
-    $COGNITO_DOMAIN = (terraform output -raw cognito_hosted_ui_domain)
-    $COGNITO_CLIENT_ID = (terraform output -raw cognito_user_pool_client_id)
+    $outputs = (terraform output -json | Out-String | ConvertFrom-Json)
+    $REGION = $outputs.aws_region.value
+    $BUCKET_NAME = $outputs.s3_bucket_name.value
+    $WEBSITE_URL = $outputs.s3_website_url.value
+    $RUM_APP_ID = $outputs.rum_app_monitor_id.value
+    $LAMBDA_URL = $outputs.lambda_proxy_function_url.value
+    $COGNITO_DOMAIN = $outputs.cognito_hosted_ui_domain.value
+    $COGNITO_CLIENT_ID = $outputs.cognito_user_pool_client_id.value
 }
 finally {
     Pop-Location
