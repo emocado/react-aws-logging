@@ -1,0 +1,11 @@
+{
+  "name": "react-aws-logging-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1",
+    "destroy": "powershell -ExecutionPolicy Bypass -File scripts/destroy.ps1",
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build"
+  }
+}
